@@ -2,6 +2,7 @@
 
 #include "tokenizer.h"
 #include "compiler.h"
+#include <unordered_map>
 
 int main() {
 
@@ -39,7 +40,14 @@ int main() {
 	for (auto a : tokenSet) {
 		printf("%d	%s	%d	%d \n", a.tk_type, a.token.c_str(), a.line, a.token_start_pos);
 	}
-	
+
+	std::unordered_map<std::string, double> RANKS = {
+		{"x", 1}, {"y", 2.5}
+	};
+
+	std::cout << RANKS["y"] << std::endl;
+	std::cout << RANKS["x"] << std::endl;
+
 	getchar();
 	return 0;
 }
