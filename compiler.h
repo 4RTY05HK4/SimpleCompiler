@@ -38,7 +38,10 @@ public:
 					if (tokenSet[tokenIter + j - 1].tk_type == 1)
 					{
 						currToken = tokenIter + j + 1;
-						vars.insert({ tokenSet[tokenIter + j - 1].token, isExprss() });
+						double value = isExprss();
+						auto it = vars.find(tokenSet[tokenIter + j - 1].token);
+						if (it != vars.end()) it->second = value;
+						else vars.insert({ tokenSet[tokenIter + j - 1].token, value });
 					}
 				}
 			}
@@ -93,7 +96,7 @@ public:
 	double isElem()
 	{
 		double pom = isFact();
-		currToken++;
+		if (currToken < tokenSet.size() - 1) currToken++;
 		if (tokenSet[currToken].token == "*")
 		{
 			currToken++;
